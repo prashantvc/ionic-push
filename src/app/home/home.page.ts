@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  onNotificationReceived(notification: { message: string, title: string, customProperties: {} }) {
+    console.log(`notification received: ${notification.title} and ${notification.message}`);
+  }
 
+  constructor() {
+    this.webView.AppCenter.Push.addEventListener("notificationReceived", this.onNotificationReceived);
+  }
+
+  webView: any = window;
 }
